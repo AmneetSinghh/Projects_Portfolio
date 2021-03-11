@@ -1,0 +1,540 @@
+<!doctype html>
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.7/phaser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style>
+        body,
+        .quote-input {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        
+        .technical {
+            font-weight: bold;
+            /* text-decoration: underline; */
+            color: grey;
+        }
+        
+        .ac {
+            font-family: cursive;
+        }
+        
+        .container {
+            background-color: #ffe1e6;
+            padding: 1rem;
+            border-radius: .5rem;
+            width: 100%;
+            max-width: 96%;
+        }
+        
+        .quote-display {
+            margin-bottom: 1rem;
+            font-size: 20px;
+            margin-left: calc(1rem + 2px);
+            margin-right: calc(1rem + 2px);
+        }
+        
+        .quote-input {
+            background-color: transparent;
+            border: 2px solid #ffe1e6;
+            outline: none;
+            width: 100%;
+            height: 8rem;
+            margin: auto;
+            resize: none;
+            font-size: 20px;
+            padding: .5rem 1rem;
+            border-radius: .5rem;
+        }
+        
+        .quote-input:focus {
+            border-color: black;
+        }
+        
+        .correct {
+            color: green;
+        }
+        
+        .timer {
+            color: green;
+        }
+        
+        .temp {
+            font-family: 'Cinzel', serif;
+        }
+        
+        .incorrect {
+            color: red;
+            text-decoration: underline;
+        }
+        
+        html {
+            min-height: 100%;
+            position: relative;
+        }
+        
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+        
+        .navbar {
+            padding-top: 100px;
+            padding-bottom: 20px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+        
+        .navbar1 {
+            padding-top: 12px;
+            padding-bottom: 100px;
+            border: 0;
+            border-radius: 0;
+            margin-bottom: 0;
+            font-size: 12px;
+            letter-spacing: 5px;
+        }
+        
+        .navbar-nav li a:hover {
+            color: #1abc9c !important;
+        }
+        
+        .footer-padding {
+            padding-bottom: 60px;
+        }
+        
+        .footer {
+            position: absolute;
+            text-align: center;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #1abc9c;
+        }
+        
+        .footer p {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #fff;
+        }
+        
+        .arena {
+            font-size: 58px;
+            color: #ffe1e6;
+            ;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+        
+        .buttonload {
+            background-color: #ffe1e6;
+            ;
+            /* Green background */
+            border: none;
+            border-radius: 3%;
+            /* Remove borders */
+            color: white;
+            /* White text */
+            padding: 12px 24px;
+            /* Some padding */
+            font-size: 16px;
+            align-items: center;
+            text-align: center;
+            /* Set a font-size */
+        }
+        /* Add a right margin to each icon */
+        
+        .fa {
+            margin-left: -12px;
+            margin-right: 8px;
+        }
+        
+        .lets {
+            font-size: 30px;
+            color: #ffe1e6;
+            ;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+        
+        .singlerace {
+            background-color: #ffe1e6;
+            border: 3px solid white;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            opacity: 1;
+            transition: 0.3s;
+        }
+        
+        .singlerace:hover {
+            opacity: 0.6
+        }
+        
+        .deathrace {
+            background-color: #ffe1e6;
+            border: none;
+            border: 3px solid white;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            opacity: 1;
+            transition: 0.3s;
+        }
+        
+        .deathrace:hover {
+            opacity: 0.6
+        }
+        
+        .multiplayer {
+            background-color: #ffe1e6;
+            border: none;
+            border: 3px solid white;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            font-size: 16px;
+            margin: 4px 2px;
+            opacity: 1;
+            transition: 0.3s;
+        }
+        
+        .multiplayer:hover {
+            opacity: 0.6
+        }
+        
+        #race {
+            font-size: 50px;
+            color: whitesmoke;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+        
+        #race1 {
+            font-size: 58px;
+            color: #ffe1e6;
+            ;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+        
+        #race2 {
+            font-size: 50px;
+            color: white;
+            ;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+        
+        .fa {
+            padding: 20px;
+            font-size: 30px;
+            width: 70px;
+            text-align: center;
+            text-decoration: none;
+            margin: 5px 2px;
+            border-radius: 50%;
+        }
+        
+        .fa:hover {
+            opacity: 0.7;
+        }
+        
+        .fa-linkedin {
+            background: #007bb5;
+            color: white;
+        }
+        
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+        
+        .fa-instagram {
+            background: #125688;
+            color: white;
+        }
+        
+        .fa-facebook {
+            background: #3B5998;
+            color: white;
+        }
+        
+        .fa-github {
+            background: black;
+            color: white;
+        }
+        
+        #first_1 {
+            color: white;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #no {
+            color: white;
+            font-size: 16px;
+        }
+        
+        img {
+            width: 700px;
+            height: 450px;
+            object-fit: cover;
+        }
+        
+        .img1 {
+            width: 700px;
+            height: 520px;
+            object-fit: cover;
+        }
+        
+        .img2 {
+            width: 700px;
+            height: 520px;
+            object-fit: cover;
+        }
+        
+        ul.a {
+            list-style-type: circle;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .cur {
+            text-align: center;
+        }
+        
+        .java {
+            color: grey;
+            font-weight: bold;
+        }
+        
+        .fuck122 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <script async src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <nav class="navbar navbar-light " style="font-size: 20px; font-family:Serif; background-color: whitesmoke; text-align: left;">
+        <p style="font-family: Serif; padding:0px; margin: 0%; font-size: 50px;"> All Technical Projects of <span class="technical">Amneet Singh😎</span></p>
+    </nav>
+
+    <nav class="navbar1 navbar-light " style="font-size: 20px; font-family:Serif; background-color: whitesmoke; text-align: left;">
+        <p style="font-family: Serif; padding:0px; margin: 0%; font-size: 15px; text-align: center; color:grey">I am a <span class="technical">Competitive Programmer</span> & <span class="technical">Full Stack Developer</span></p>
+    </nav>
+    <br>
+    <div class="w3-panel w3-card-4">
+        <h1 class="cur">1. Typing Multiplayer Game (<span class="java">JavaScript</span>)</h1>
+    </div>
+
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6" style="background-color:lavender;">
+                <div id="mynetwork">
+                    <img src="images/cache.jpg">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6" style="background-color:#404040;">
+                <h1 class="arena">T<span id="race">ype</span> <span id="race1">G</span><span id="race2">o</span> </h1>
+                <div class="w3-panel w3-card-4">
+                    <p id="no">It is a typing multiplayer game where users have to type the paragraph in one minute which will be generated randomly and they can check their typing speed. So we have 3 modes/categories in our website Single race, Death race and multiplayer
+                        race.
+                    </p>
+
+                    <ul class="a">
+                        <li>Implemented the Inner Logic of the game with the help of data-structures like hashmaps etc.</li>
+                        <li>Currently Working on adding Databases, Multiplayer and Chat-rooms feature.
+                        </li>
+                        <li>Technologies- HTML, CSS and JavaScript Gaming framework Phaser for Frontend and Node js for Backend.</li>
+                    </ul>
+
+                    <p id="first_1"><span id="first_2">Project Website:</span>
+                        <span id="first_3"><a target="_blank" href="https://safe-stream-06457.herokuapp.com/">link</a></span>
+                    </p>
+                    <p id="first_1"><span id="first_2">Project Documentation:</span>
+                        <span id="first_3"><a target="_blank" href="https://codingas.bit.ai/docs/view/SNrEtw1L41N6Cuar">link</a></span>
+                    </p>
+                    <p id="first_1"><span id="first_2">Project Github:</span>
+                        <span id="first_3"><a target="_blank" href="https://github.com/HarrySinghhh/Multi-Player-Typego">link</a></span>
+                    </p>
+                </div>
+
+                <p>&nbsp</p>
+                <p>&nbsp</p>
+                <span id="connect">   &nbsp&nbsp &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <a target="_blank" href="https://github.com/HarrySinghhh" class="fa fa-github"></a>
+                <a target="_blank" href="https://www.linkedin.com/in/amneet-singh/" class="fa fa-linkedin"></a>
+                <a target="_blank" href="https://www.facebook.com/harryamneet/" class="fa fa-facebook"></a>
+                <a target="_blank" href="https://www.instagram.com/harry_singhzz/?hl=en" class="fa fa-instagram"> </a>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+    <div class="w3-panel w3-card-4">
+
+        <h1 class="cur">2. Interactive View of Advanced Data Structures (<span class="java">JavaScript</span>)</h1>
+    </div>
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6" style="background-color:lavender;">
+                <div id="mynetwork">
+                    <img class="img1" src="images/cahce1.png">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6" style="background-color:#404040;">
+                <h1 class="arena">I<span id="race">nteractive</span> <span id="race1">V</span><span id="race2">iew</span> </h1>
+                <div class="w3-panel w3-card-4">
+                    <p id="no">
+                        It is an environment, where you can see the real world example of how we use data-structures in real life. I used graph, tries and a programming paradigms like dynamic programming to solve some beautiful real world problems.
+
+                    </p>
+
+                    <ul class="a">
+                        <li>Developed a Web Interactive View of Advanced Data Structures, where we have 3 modes Min-Path problem using Graphs (Where we are given a bunch of cities and we have to find the least time travel path between 2 cities), Auto-Complete
+                            Widget using Tries (It basically a Phone Contact list search using trie data structure) and Minimum Coin Problem using Dynamic Programming (A g
+                        </li>
+                        <li>Technologies- HTML, CSS and JavaScript Gaming framework Phaser for Frontend and Node js for Backend.</li>
+                    </ul>
+
+                    <p id="first_1"><span id="first_2">Project Website:</span>
+                        <span id="first_3"><a target="_blank" href="https://amneet-interactive-view.herokuapp.com/">link</a></span>
+                    </p>
+                    <p id="first_1"><span id="first_2">Project Documentation:</span>
+                        <span id="first_3"><a target="_blank" href="https://codingas.bit.ai/docs/view/q7CrE0HLJLziWRsy">link</a></span>
+                    </p>
+                    <p id="first_1"><span id="first_2">Project Github:</span>
+                        <span id="first_3"><a target="_blank" href="https://github.com/HarrySinghhh/Interactive-Views/tree/main">link</a></span>
+                    </p>
+                </div>
+
+                <p>&nbsp</p>
+                <p>&nbsp</p>
+                <span id="connect">   &nbsp&nbsp &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <a target="_blank" href="https://github.com/HarrySinghhh" class="fa fa-github"></a>
+                <a target="_blank" href="https://www.linkedin.com/in/amneet-singh/" class="fa fa-linkedin"></a>
+                <a target="_blank" href="https://www.facebook.com/harryamneet/" class="fa fa-facebook"></a>
+                <a target="_blank" href="https://www.instagram.com/harry_singhzz/?hl=en" class="fa fa-instagram"> </a>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <hr>
+
+
+
+
+
+    <div class="w3-panel w3-card-4">
+
+
+        <h1 class="cur">3. Telegram LRU Cache Operations (<span class="java">JavaScript</span>)</h1>
+
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6" style="background-color:lavender;">
+                <div id="mynetwork">
+                    <img class="img2" src="images/hashmap.png">
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6" style="background-color:#404040;">
+                <h1 class="arena">L<span id="race">RU</span> <span id="race1">C</span><span id="race2">ache</span> </h1>
+                <div class="w3-panel w3-card-4">
+                    <p id="no">
+                        It is a Backend project which generally shows how the chatting functionality in these messaging applications like telegram/whatsapp works. I implemented LRU Cache using linked-list and default hash-map of JavaScript and showed how we can make our chatting
+                        functionality fast by using LRU Cache in that.
+                    </p>
+
+                    <ul class="a">
+                        <li>
+                            Basically when the user sends message, all the chats which are above it will shift down and the chats which are below it will shift up. So this functionality is so much time taking but in real-time they do it in mili-seconds. So I represent how LRU-Cache
+                            will be useful in this case.
+                        </li>
+                        <li>Technologies- HTML, CSS and JavaScript Gaming framework Phaser for Frontend and Node js for Backend.</li>
+                    </ul>
+
+                    <p id="first_1"><span id="first_2">Project Website:</span>
+                        <span id="first_3"><a target="_blank" href="https://telegram-lru-operations.herokuapp.com/">link</a></span>
+                    </p>
+                    <p id="first_1"><span id="first_2">Project Documentation:</span>
+                        <span id="first_3"><a target="_blank" href="https://codingas.bit.ai/docs/view/x3jXYId5T5H7bVWz">link</a></span>
+                    </p>
+                    <p id="first_1"><span id="first_2">Project Github:</span>
+                        <span id="first_3"><a target="_blank" href="https://github.com/HarrySinghhh/Telegram-LRU_Cache-operations-">link</a></span>
+                    </p>
+                </div>
+
+                <p>&nbsp</p>
+                <p>&nbsp</p>
+                <span id="connect">   &nbsp&nbsp &nbsp &nbsp&nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</span>
+                <a target="_blank" href="https://github.com/HarrySinghhh" class="fa fa-github"></a>
+                <a target="_blank" href="https://www.linkedin.com/in/amneet-singh/" class="fa fa-linkedin"></a>
+                <a target="_blank" href="https://www.facebook.com/harryamneet/" class="fa fa-facebook"></a>
+                <a target="_blank" href="https://www.instagram.com/harry_singhzz/?hl=en" class="fa fa-instagram"> </a>
+
+
+            </div>
+
+        </div>
+    </div>
+    <hr>
+
+    <nav class="navbar navbar-light " style="font-size: 20px; font-family: sans-serif; background-color: whitesmoke; text-align: left; ">
+        <p style="font-family: 'Kaushan Script', cursive; padding:0px; margin: 0%; ">Connect with me <span id="fuck122">Whatsapp</span> -9914075977 </p>
+    </nav>
+</body>
+
+</html>
